@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Validação de Formulário</title>
+<style>
+    .message {
+    margin-top: 10px;
+    font-weight: bold;
+    }
+    .valid {
+    color: green;
+    }
+    .invalid {
+    color: red;
+    }
+    button {
+        margin-top: 10px;
+        width: 100px;
+
+    }
+</style>
+</head>
+<body>
+    <h1>Formulário de Validação</h1>
+    <form id="myForm">
+    <label for="campoA">Campo A:</label>
+    <input type="number" id="campoA" name="campoA" required max="10" min="0">
+    <br>
+    <label for="campoB">Campo B:</label>
+    <input type="number" id="campoB" name="campoB" required max="10" min="0">
+    <br>
+    <button type="submit">Enviar</button>
+    </form>
+    <div class="message" id="validationMessage"></div>
+
+<script>
+    document.getElementById('myForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    var campoA = parseFloat(document.getElementById('campoA').value);
+    var campoB = parseFloat(document.getElementById('campoB').value);
+    var validationMessage = document.getElementById('validationMessage');
+
+    if (campoB > campoA) {
+        validationMessage.textContent = 'Formulário válido!';
+        validationMessage.classList.remove('invalid');
+        validationMessage.classList.add('valid');
+    } else {
+        validationMessage.textContent = 'Formulário inválido! Certifique-se de que o número B seja maior que o número A.';
+        validationMessage.classList.remove('valid');
+        validationMessage.classList.add('invalid');
+    }
+    });
+</script>
+</body>
+</html>
